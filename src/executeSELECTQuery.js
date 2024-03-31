@@ -7,7 +7,7 @@ async function executeSELECTQuery(query) {
 
   // WHERE CLAUSE filtering of DATA
   const filteredData =
-    whereClauses.length > 0
+    whereClauses?.length > 0
       ? data.filter((row) => {
           return whereClauses.every((clause) => evaluateCondition(row, clause));
         })

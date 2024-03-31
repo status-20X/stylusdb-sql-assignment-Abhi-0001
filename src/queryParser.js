@@ -4,11 +4,18 @@ module.exports = function parseQuery(query) {
   if (match) {
     const [, fields, table, whereString] = match;
     const whereClauses = whereString ? parseWhereClause(whereString) : [];
-    return {
-      fields: fields.split(",").map((field) => field.trim()),
-      table: table.trim(),
-      whereClauses,
-    };
+    if (whereClauses.length > 0) {
+      return {
+        fields: fields.split(",").map((field) => field.trim()),
+        table: table.trim(),
+        whereClauses,
+      };
+    } else {
+      return {
+        fields: fields.split(",").map((field) => field.trim()),
+        table: table.trim(),
+      };
+    }
   } else {
     return "Invalid query format";
   }
